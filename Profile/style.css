@@ -1,0 +1,106 @@
+/* Thanh progress bar để đánh giá mức điểm thế mạnh*/
+.progress {
+  width: 100%;
+  height: 12px;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+}
+
+.progress-fill {
+  height: 12px;
+  background-color: #4caf50;
+  border-radius: 10px;
+}
+
+/* 1. Phần Grid bạn gửi (Đã tối ưu) */
+.image-grid {
+    display: grid;
+    /* Tự động chia cột: mỗi cột tối thiểu 200px */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.image-grid img {
+    width: 100%;
+    height: 250px;     /* Bắt buộc chiều cao bằng nhau để lưới đẹp */
+    object-fit: cover; /* Cắt ảnh để không bị méo hình */
+    display: block;
+    cursor: pointer;
+    border-radius: 8px; /* Bo góc nhẹ cho đẹp */
+    transition: transform 0.3s ease; /* Hiệu ứng mượt */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Hiệu ứng khi di chuột vào ảnh */
+.image-grid img:hover {
+    transform: scale(1.03); /* Phóng to nhẹ */
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+
+/* 2. Phần MODAL (Lightbox) - Màn hình đen khi phóng to */
+.modal {
+    display: none; /* Mặc định ẩn */
+    position: fixed;
+    z-index: 9999;
+    padding-top: 50px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9); /* Màu đen trong suốt */
+}
+
+/* Ảnh khi phóng to */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 800px;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 5px;
+    animation: zoom 0.5s; /* Hiệu ứng zoom */
+}
+
+/* Chữ chú thích dưới ảnh */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    font-size: 1.2rem;
+}
+
+/* Nút đóng (X) */
+.close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close:hover {
+    color: #bbb;
+}
+
+/* Hiệu ứng Zoom Animation */
+@keyframes zoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
+
+/* Responsive cho điện thoại */
+@media only screen and (max-width: 700px){
+    .modal-content {
+        width: 100%;
+    }
+}
